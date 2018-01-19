@@ -1,5 +1,5 @@
 # TDP43-analysis
-Source code from Schmidt et al., 2018 for:
+Source code for:
 	1.) Compiling NTD, RRM and CTD databases from a collection of vertebrate TDP43 homologs (Step 1)
 		Input: Vertebrate TDP43.fasta
 		Analysis: Step1.nb
