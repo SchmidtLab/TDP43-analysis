@@ -1,0 +1,216 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8340,        208]
+NotebookOptionsPosition[      7876,        192]
+NotebookOutlinePosition[      8291,        209]
+CellTagsIndexPosition[      8248,        206]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Provide", " ", "an", " ", "input", " ", "file", " ", "path"}], 
+   " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+    "RandomFile", "=", "\"\<2018_01_06 mCh_GFP_BFP for 1108-2.csv\>\""}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"DirectoryName", "[", "RandomFile", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Files", "=", 
+    RowBox[{"FileNames", "[", "\"\<*.csv\>\"", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Length", "[", "Files", "]"}], ",", "\"\< files imported!\>\""}],
+     "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.710525998220345*^9, 3.710526025648147*^9}, {
+   3.710526275451392*^9, 3.710526276508462*^9}, {3.7105263069760027`*^9, 
+   3.710526333805793*^9}, 3.710526879031164*^9, 3.71061690662571*^9, 
+   3.710616953885208*^9, 3.710621882443544*^9, 3.723589084892748*^9, 
+   3.723937476445318*^9, 3.724279436517557*^9, 3.724538348683543*^9, {
+   3.724540419544341*^9, 3.724540436879633*^9}, {3.725314560836467*^9, 
+   3.725314581359992*^9}, 3.725314757552361*^9, 3.725314932812272*^9, {
+   3.725371323827821*^9, 3.725371328214553*^9}, 3.725371779020492*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"701a47db-1864-45bc-9843-f50e27215f3e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Analyze", " ", "all", " ", "data"}], " ", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Data", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"LogData", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RawWerte", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NamenRawWerte", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"rein", "=", 
+         RowBox[{"Import", "[", 
+          RowBox[{"Files", "[", 
+           RowBox[{"[", "a", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"rein", "=", 
+         RowBox[{"Flatten", "[", "rein", "]"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Data", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"Data", ",", "rein"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"LogData", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"LogData", ",", 
+          RowBox[{"Log", "[", "rein", "]"}]}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"RawEntry", "=", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Mean", "[", "rein", "]"}], ",", 
+          RowBox[{"StandardDeviation", "[", "rein", "]"}], ",", 
+          RowBox[{"Length", "[", "rein", "]"}]}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"RawWerte", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"RawWerte", ",", "RawEntry"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"ID", "=", 
+         RowBox[{"First", "[", 
+          RowBox[{"StringSplit", "[", 
+           RowBox[{
+            RowBox[{"Last", "[", 
+             RowBox[{"StringSplit", "[", 
+              RowBox[{
+               RowBox[{"Files", "[", 
+                RowBox[{"[", "a", "]"}], "]"}], ",", "\"\< \>\""}], "]"}], 
+             "]"}], ",", "\"\<.\>\""}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"NamenRawWerte", "=", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"NamenRawWerte", ",", 
+           RowBox[{"{", 
+            RowBox[{"a", ",", "ID", ",", 
+             RowBox[{"Median", "[", "rein", "]"}], ",", 
+             RowBox[{"MedianDeviation", "[", "rein", "]"}], ",", 
+             RowBox[{"Length", "[", "rein", "]"}]}], "}"}]}], "]"}]}]}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1", ",", 
+       RowBox[{"Length", "[", "Files", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"names", "=", 
+     RowBox[{
+      RowBox[{"Transpose", "[", "NamenRawWerte", "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Log", "[", "Data", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"SuperChart", "=", 
+    RowBox[{"BoxWhiskerChart", "[", 
+     RowBox[{"data", ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Outliers\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{"\"\<MedianMarker\>\"", ",", "1", ",", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"Thick", ",", "White"}], "]"}]}], "}"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ChartLabels", "\[Rule]", 
+       RowBox[{"Placed", "[", 
+        RowBox[{
+         RowBox[{"{", "names", "}"}], ",", 
+         RowBox[{"{", "Axis", "}"}]}], "]"}]}], ",", 
+      RowBox[{"ChartStyle", "\[Rule]", "10"}], ",", 
+      RowBox[{"BarOrigin", "\[Rule]", "Left"}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<All_CompMut_BoxWhiskers.pdf\>\"", ",", "SuperChart"}], "]"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<Summary Table:\>\"", ",", "Bold"}], "]"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"table", "=", 
+    RowBox[{"TableForm", "[", 
+     RowBox[{"PrependTo", "[", 
+      RowBox[{"NamenRawWerte", ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<#\>\"", ",", "\"\<ID\>\"", ",", "\"\<Median\>\"", ",", 
+         "\"\<MedDev\>\"", ",", "\"\<N\>\""}], "}"}]}], "]"}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<SummaryTable.pdf\>\"", ",", "table"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.710526341261115*^9, 3.710526417481092*^9}, {
+   3.71052645461213*^9, 3.710526514097227*^9}, {3.7105265455843077`*^9, 
+   3.7105265782077417`*^9}, {3.710526775809546*^9, 3.7105267916335506`*^9}, {
+   3.7105268936133957`*^9, 3.710526923913354*^9}, {3.710527234411997*^9, 
+   3.710527235042172*^9}, {3.7105277948807707`*^9, 3.7105278032487926`*^9}, {
+   3.710529965057823*^9, 3.7105300547317123`*^9}, {3.710530166876294*^9, 
+   3.710530169067563*^9}, {3.71053792084564*^9, 3.710537940798712*^9}, {
+   3.710617400018819*^9, 3.7106174429073973`*^9}, {3.710617484759151*^9, 
+   3.710617497503202*^9}, {3.710618624133374*^9, 3.710618624980901*^9}, {
+   3.710619238094283*^9, 3.710619246157111*^9}, {3.710619322492259*^9, 
+   3.71061942134864*^9}, {3.710619488703351*^9, 3.710619491182188*^9}, 
+   3.710619535291391*^9, {3.710621976965287*^9, 3.710622003467338*^9}, {
+   3.710622037303812*^9, 3.710622045678241*^9}, {3.710622485401451*^9, 
+   3.710622539673472*^9}, {3.7231339545587807`*^9, 3.723133970445119*^9}, {
+   3.7253146401911287`*^9, 3.725314647297722*^9}, 3.725371352548394*^9, {
+   3.7253714294028463`*^9, 3.725371595357369*^9}, {3.725371682797289*^9, 
+   3.725371707166049*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"623f9d02-6495-47cb-b3a7-a8d6d5b21086"]
+},
+WindowSize->{1280, 710},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules->{"Openers" -> {"NotesSection" -> Closed}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1410, 29, 173, "Input",ExpressionUUID->"701a47db-1864-45bc-9843-f50e27215f3e"],
+Cell[1971, 51, 5901, 139, 572, "Input",ExpressionUUID->"623f9d02-6495-47cb-b3a7-a8d6d5b21086"]
+}
+]
+*)
+
