@@ -1,0 +1,183 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6546,        175]
+NotebookOptionsPosition[      6137,        160]
+NotebookOutlinePosition[      6497,        176]
+CellTagsIndexPosition[      6454,        173]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"RandomFile", "=", "\"\<838_20x_2_MMStack_Pos0.ome.tif\>\""}], 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Provide", " ", "file", " ", "path", " ", "for", " ", "raw", " ", "image",
+      " ", "data"}], "*)"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TopDir", "=", 
+   RowBox[{"DirectoryName", "[", "RandomFile", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetDirectory", "[", "TopDir", "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"files", "=", 
+   RowBox[{"FileNames", "[", "\"\<*.tif\>\"", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<Files found:\>\"", ",", "Bold"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "files", "]"}]}], "Input",
+ CellChangeTimes->{{3.739889941264887*^9, 3.73988995133957*^9}, {
+  3.739890040828887*^9, 3.739890044339711*^9}, {3.7457024996047783`*^9, 
+  3.7457025116588297`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"89ad7b20-541d-472f-b451-5d76a3bb9c5f"],
+
+Cell[BoxData[{
+ RowBox[{"Monitor", "[", 
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Import", " ", "the", " ", "images", " ", "and", " ", "metadata"}], 
+       " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"SelFile", "=", 
+         RowBox[{"files", "[", 
+          RowBox[{"[", "d", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"rein", "=", 
+         RowBox[{"Import", "[", "SelFile", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"pics", "=", 
+         RowBox[{"Partition", "[", 
+          RowBox[{"rein", ",", 
+           RowBox[{
+            RowBox[{"Length", "[", "rein", "]"}], "/", "2"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"ImageFocusCombine", " ", "for", " ", "Channel", " ", "1"}], 
+         " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"Ch01", "=", 
+         RowBox[{"ImageFocusCombine", "[", 
+          RowBox[{"pics", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Ch01name", "=", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{
+           RowBox[{"First", "[", 
+            RowBox[{"StringSplit", "[", 
+             RowBox[{"SelFile", ",", "\"\<_MMStack_\>\""}], "]"}], "]"}], 
+           ",", "\"\<_\>\"", ",", 
+           RowBox[{"First", "[", 
+            RowBox[{"StringSplit", "[", 
+             RowBox[{
+              RowBox[{"Last", "[", 
+               RowBox[{"StringSplit", "[", 
+                RowBox[{"SelFile", ",", "\"\<_MMStack_\>\""}], "]"}], "]"}], 
+              ",", "\"\<.\>\""}], "]"}], "]"}], ",", 
+           "\"\<_Ch01_FocusCombine.tif\>\""}], "]"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"ImageFocusCombine", " ", "for", " ", "Channel", " ", "2"}], 
+        " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Ch02", "=", 
+         RowBox[{"ImageFocusCombine", "[", 
+          RowBox[{"pics", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Ch02name", "=", 
+         RowBox[{"StringJoin", "[", 
+          RowBox[{
+           RowBox[{"First", "[", 
+            RowBox[{"StringSplit", "[", 
+             RowBox[{"SelFile", ",", "\"\<_MMStack_\>\""}], "]"}], "]"}], 
+           ",", "\"\<_\>\"", ",", 
+           RowBox[{"First", "[", 
+            RowBox[{"StringSplit", "[", 
+             RowBox[{
+              RowBox[{"Last", "[", 
+               RowBox[{"StringSplit", "[", 
+                RowBox[{"SelFile", ",", "\"\<_MMStack_\>\""}], "]"}], "]"}], 
+              ",", "\"\<.\>\""}], "]"}], "]"}], ",", 
+           "\"\<_Ch02_FocusCombine.tif\>\""}], "]"}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Export", " ", "combined", " ", "images"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"SetDirectory", "[", 
+        RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"Ch01name", ",", "Ch01"}], "]"}], ",", "\[IndentingNewLine]", 
+       
+       RowBox[{"Export", "[", 
+        RowBox[{"Ch02name", ",", 
+         RowBox[{"ImageAdjust", "[", "Ch02", "]"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", "1", ",", 
+       RowBox[{"Length", "[", "files", "]"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"ProgressIndicator", "[", 
+    RowBox[{"d", ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"Length", "[", "files", "]"}]}], "}"}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<Done!\>\"", ",", "Bold", ",", "Blue"}], "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7397163776605988`*^9, 3.739716395008807*^9}, {
+   3.7397164775010757`*^9, 3.7397165153256598`*^9}, {3.7397165634837837`*^9, 
+   3.739716566189239*^9}, {3.739716611034272*^9, 3.739716643023397*^9}, {
+   3.739889112955724*^9, 3.7398891133324547`*^9}, 3.739889164011937*^9, {
+   3.739889929827816*^9, 3.739889940379734*^9}, {3.739890046798506*^9, 
+   3.739890047130039*^9}, {3.739890768777869*^9, 3.739890784073337*^9}},
+ Background->RGBColor[
+  1, 0.85, 0.85],ExpressionUUID->"1c2a7779-aac2-4d6d-96dd-d07d17bdee0d"]
+},
+WindowSize->{914, 606},
+WindowMargins->{{162, Automatic}, {Automatic, 14}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1145, 30, 194, "Input",ExpressionUUID->"89ad7b20-541d-472f-b451-5d76a3bb9c5f"],
+Cell[1706, 52, 4427, 106, 425, "Input",ExpressionUUID->"1c2a7779-aac2-4d6d-96dd-d07d17bdee0d"]
+}
+]
+*)
+
