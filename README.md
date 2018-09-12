@@ -24,3 +24,6 @@ Source code for:
 	7.) Analysis of TDP43 splicing assay (Step 7)
 		Input: fcs files
 		Analysis: Step7.nb
+	8.) Analysis of TDP43 reporter droplet formation (Step 8)
+		Input: image files
+		Analysis: Step8.nb
