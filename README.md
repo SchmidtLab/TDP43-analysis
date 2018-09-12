@@ -26,4 +26,7 @@ Source code for:<br><br>
 		Analysis: Step7.nb<br><br>
 	8.) Analysis of TDP43 reporter droplet formation (Step 8)<br>
 		Input: image files<br>
-		Analysis: Step8.nb<br>
+		Analysis: Step8.nb<br><br>
+	9.) Analysis of GFP-TDP43 foci (Step 9)<br>
+		Input: image files<br>
+		Analysis: Step9.nb<br>
