@@ -14,9 +14,9 @@ Source code for:<br><br>
 	4.) Subdividing the CTD database into IDR and CR databases (Step 4)<br>
 		Input: Unique species CTDs.fasta<br>
 		Analysis: Step4.nb<br>
-		Output: True IDR Domains without CRs.fasta, Conserved Regions.fasta<br><br>
+		Output: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br><br>
 	5.) Analyzing the IDR and CR databases (Step 5)<br>
-		Input: True IDR Domains without CRs.fasta, Conserved Regions.fasta<br>
+		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
 		Analysis: Step5.nb<br><br>
 	6.) Sliding window analysis of CTD sequences (Step 6)<br>
 		Input: Unique species CTDs.fasta<br>
