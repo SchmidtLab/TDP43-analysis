@@ -1,0 +1,921 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     36321,        913]
+NotebookOptionsPosition[     35721,        896]
+NotebookOutlinePosition[     36074,        912]
+CellTagsIndexPosition[     36031,        909]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Define", " ", "input", " ", "files"}], " ", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NTDfile", "=", "\"\<NTDs.fasta\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RRMfile", "=", "\"\<RRMs.fasta\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CTDfile", "=", "\"\<CTDs.fasta\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Get", " ", "the", " ", "data", " ", "from", " ", "the", " ", "files"}], 
+    " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NTDheader", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"NTDfile", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NTDseq", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"NTDfile", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Length", "[", "NTDheader", "]"}], ",", "\"\<, \>\"", ",", 
+     RowBox[{"Length", "[", "NTDseq", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RRMheader", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"RRMfile", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"RRMseq", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"RRMfile", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Length", "[", "RRMheader", "]"}], ",", "\"\<, \>\"", ",", 
+     RowBox[{"Length", "[", "RRMseq", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CTDheader", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"CTDfile", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CTDseq", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"CTDfile", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Length", "[", "CTDheader", "]"}], ",", "\"\<, \>\"", ",", 
+     RowBox[{"Length", "[", "CTDseq", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<Number of sequences imported: \>\"", ",", "Bold"}], "]"}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllLengths", "=", 
+     RowBox[{"DeleteDuplicates", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Length", "[", "NTDheader", "]"}], ",", 
+        RowBox[{"Length", "[", "NTDseq", "]"}], ",", 
+        RowBox[{"Length", "[", "RRMheader", "]"}], ",", 
+        RowBox[{"Length", "[", "RRMseq", "]"}], ",", 
+        RowBox[{"Length", "[", "NTDheader", "]"}], ",", 
+        RowBox[{"Length", "[", "NTDseq", "]"}]}], "}"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", "AllLengths", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<Initiation complete!\>\"", ",", "Bold", ",", "Blue"}], 
+     "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.705445050261833*^9, 3.7054451412410583`*^9}, {
+  3.705445172188586*^9, 3.7054451770430117`*^9}, {3.70544784670868*^9, 
+  3.705447849916312*^9}, {3.705447927687601*^9, 3.70544794874559*^9}, {
+  3.705447981057753*^9, 3.7054479908259907`*^9}, {3.705448035828773*^9, 
+  3.705448040835095*^9}, {3.705455440012898*^9, 3.705455520953042*^9}, {
+  3.725311349456723*^9, 3.725311368686165*^9}, {3.725312092352345*^9, 
+  3.7253120993015842`*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"56cfd27b-c22a-437b-9942-eb6e9ae6ac62"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Select", " ", "only", " ", "the", " ", "major", " ", "isoform", " ", 
+    "from", " ", "each", " ", "species"}], " ", "*)"}], "\[IndentingNewLine]",
+   "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sequenzen", "=", 
+     RowBox[{"First", "[", "AllLengths", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Species", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FilterListeNTD", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FilterListeRRM", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FilterListeCTD", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Extract", " ", "species", " ", "information", " ", "and", " ", "IDs", 
+        " ", "based", " ", "on", " ", "CTD", " ", "headers"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"a1", "=", 
+        RowBox[{"CTDheader", "[", 
+         RowBox[{"[", "a", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"sp", "=", 
+        RowBox[{
+         RowBox[{"StringSplit", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"StringSplit", "[", 
+             RowBox[{"a1", ",", "\"\<[\>\""}], "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ",", "\"\<]\>\""}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Separately", " ", "compile", " ", "species", " ", "information"}], 
+        " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Species", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"Species", ",", "sp"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{"Compile", " ", "filter", " ", "lists"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"FilterListeNTD", "=", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"FilterListeNTD", ",", 
+           RowBox[{"{", 
+            RowBox[{"sp", ",", 
+             RowBox[{"NTDseq", "[", 
+              RowBox[{"[", "a", "]"}], "]"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"FilterListeRRM", "=", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"FilterListeRRM", ",", 
+           RowBox[{"{", 
+            RowBox[{"sp", ",", 
+             RowBox[{"RRMseq", "[", 
+              RowBox[{"[", "a", "]"}], "]"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"FilterListeCTD", "=", 
+         RowBox[{"AppendTo", "[", 
+          RowBox[{"FilterListeCTD", ",", 
+           RowBox[{"{", 
+            RowBox[{"sp", ",", 
+             RowBox[{"CTDseq", "[", 
+              RowBox[{"[", "a", "]"}], "]"}]}], "}"}]}], "]"}]}], ";"}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1", ",", "Sequenzen"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Count", " ", "the", " ", "number", " ", "of", " ", "duplicates"}], " ", 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"counts", "=", 
+     RowBox[{"Tally", "[", "Species", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{
+     "\"\<Species with more than 1 entry before filtering:\>\"", ",", 
+      "Bold"}], "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mto", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"counts", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], ">", "1"}], "&"}]}], "]"}]}], ";"}],
+    "\[IndentingNewLine]", 
+   RowBox[{"TableForm", "[", "mto", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewNTDHeader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewNTDSeq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewRRMHeader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewRRMSeq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewCTDHeader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewCTDSeq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Remove", " ", "duplicates"}], " ", "*)"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempNTDheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempNTDseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempRRMheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempRRMseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempCTDheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempCTDseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Get", " ", "duplicate", " ", "species", " ", "info"}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"t1", "=", 
+        RowBox[{"mto", "[", 
+         RowBox[{"[", 
+          RowBox[{"t", ",", "1"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "NTD"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"humanNTDcheck", "=", "104"}], ";", 
+        RowBox[{"(*", " ", 
+         RowBox[{"length", " ", "of", " ", "the", " ", "human", " ", "NTD"}], 
+         " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t2", "=", 
+         RowBox[{"Select", "[", 
+          RowBox[{"FilterListeNTD", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "t1"}], "&"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t3", "=", 
+         RowBox[{
+          RowBox[{"Transpose", "[", "t2", "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"t4", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{"t3", ",", 
+             RowBox[{
+              RowBox[{"50", "<", 
+               RowBox[{"StringLength", "[", "#", "]"}], "<", "150"}], "&"}]}],
+             "]"}]}], ","}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t5", "=", 
+         RowBox[{"Tally", "[", "t3", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t6", "=", 
+         RowBox[{"SortBy", "[", 
+          RowBox[{"t5", ",", "Last"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t7", "=", 
+         RowBox[{
+          RowBox[{"Last", "[", "t6", "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}]}], ",", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Select", " ", "the", " ", "most", " ", "commonest", " ", 
+         "sequence"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"tempNTDseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempNTDseq", ",", "t7"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempNTDheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempNTDheader", ",", 
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"t1", ",", "\"\< NTD\>\""}], "]"}]}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "RRM"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"humanRRMcheck", "=", "153"}], ";", " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "length", " ", "of", " ", "the", " ", "human", " ", "RRM", " ", 
+          "domains"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t8", "=", 
+         RowBox[{"Select", "[", 
+          RowBox[{"FilterListeRRM", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "t1"}], "&"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t9", "=", 
+         RowBox[{
+          RowBox[{"Transpose", "[", "t8", "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"t10", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{"t9", ",", 
+             RowBox[{
+              RowBox[{"100", "<", 
+               RowBox[{"StringLength", "[", "#", "]"}], "<", "200"}], "&"}]}],
+             "]"}]}], ","}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t11", "=", 
+         RowBox[{"Tally", "[", "t9", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t12", "=", 
+         RowBox[{"SortBy", "[", 
+          RowBox[{"t11", ",", "Last"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t13", "=", 
+         RowBox[{
+          RowBox[{"Last", "[", "t12", "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}]}], ",", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Select", " ", "the", " ", "most", " ", "commonest", " ", 
+         "sequence"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"tempRRMseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempRRMseq", ",", "t13"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempRRMheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempRRMheader", ",", 
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"t1", ",", "\"\< RRM\>\""}], "]"}]}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "CTD"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"humanIDRcheck", "=", "158"}], ";", " ", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "length", " ", "of", " ", "the", " ", "human", " ", "IDR", " ", 
+          "domains"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t14", "=", 
+         RowBox[{"Select", "[", 
+          RowBox[{"FilterListeCTD", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "t1"}], "&"}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t15", "=", 
+         RowBox[{
+          RowBox[{"Transpose", "[", "t14", "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"t16", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{"t15", ",", 
+             RowBox[{
+              RowBox[{"100", "<", 
+               RowBox[{"StringLength", "[", "#", "]"}], "<", "200"}], "&"}]}],
+             "]"}]}], ","}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"t17", "=", 
+         RowBox[{"Tally", "[", "t15", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t18", "=", 
+         RowBox[{"SortBy", "[", 
+          RowBox[{"t17", ",", "Last"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"t19", "=", 
+         RowBox[{
+          RowBox[{"Last", "[", "t18", "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}]}], ",", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Select", " ", "the", " ", "most", " ", "commonest", " ", 
+         "sequence"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"tempCTDseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempCTDseq", ",", "t19"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempCTDheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempCTDheader", ",", 
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"t1", ",", " ", "\"\< CTD\>\""}], "]"}]}], "]"}]}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "1", ",", 
+       RowBox[{"Length", "[", "mto", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Add", " ", "all", " ", "single", " ", "sequences"}], " ", "*)"}],
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"justone", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"counts", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "==", "1"}], "&"}]}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneNTDheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneNTDseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneRRMheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneRRMseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneCTDheader", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tempOneCTDseq", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Get", " ", "sinlge", " ", "species", " ", "info"}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"o1", "=", 
+        RowBox[{"justone", "[", 
+         RowBox[{"[", 
+          RowBox[{"o", ",", "1"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "NTD"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"o2", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{"FilterListeNTD", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "o1"}], "&"}]}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"o3", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"o1", ",", "\"\< NTD\>\""}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"o4", "=", 
+        RowBox[{"o2", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"tempOneNTDheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneNTDheader", ",", "o3"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempOneNTDseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneNTDseq", ",", "o4"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "RRM"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"o5", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{"FilterListeRRM", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "o1"}], "&"}]}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"o6", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"o1", ",", "\"\< RRM\>\""}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"o7", "=", 
+        RowBox[{"o5", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"tempOneRRMheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneRRMheader", ",", "o6"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempOneRRMseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneRRMseq", ",", "o7"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Get", " ", "the", " ", "CTD"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"o8", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{"FilterListeCTD", ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "\[Equal]", "o1"}], "&"}]}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"o9", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"o1", ",", "\"\< CTD\>\""}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"o10", "=", 
+        RowBox[{"o8", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"tempOneCTDheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneCTDheader", ",", "o9"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tempOneCTDseq", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"tempOneCTDseq", ",", "o10"}], "]"}]}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"o", ",", "1", ",", 
+       RowBox[{"Length", "[", "justone", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Combine", " ", "all", " ", "unique", " ", "sequences"}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewNTDheader", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempNTDheader", ",", "tempOneNTDheader"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewNTDseq", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempNTDseq", ",", "tempOneNTDseq"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewRRMheader", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempRRMheader", ",", "tempOneRRMheader"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewRRMseq", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempRRMseq", ",", "tempOneRRMseq"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewCTDheader", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempCTDheader", ",", "tempOneCTDheader"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"AllNewCTDseq", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"tempCTDseq", ",", "tempOneCTDseq"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Make", " ", "some", " ", "control", " ", "calculations", " ", "to", " ", 
+     "ensure", " ", "that", " ", "everything", " ", "was", " ", "correct"}], 
+    " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of sequences imported: \>\"", ",", "Bold"}], "]"}], 
+     ",", "Sequenzen"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of expected unique sequences: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Length", "[", "justone", "]"}], "+", 
+       RowBox[{"Length", "[", "mto", "]"}]}], ")"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected NTD sequences: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewNTDseq", "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected NTD headers: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewNTDheader", "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected RRM sequences: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewRRMseq", "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected RRM headers: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewRRMheader", "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected CTD sequences: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewCTDseq", "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Number of collected CTD headers: \>\"", ",", "Bold"}], 
+      "]"}], ",", 
+     RowBox[{"Length", "[", "AllNewCTDheader", "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.685472731094735*^9, 3.685472872635051*^9}, {
+   3.685472981784451*^9, 3.685472986167018*^9}, {3.68547301767386*^9, 
+   3.685473062794641*^9}, {3.685473176913288*^9, 3.6854731975774937`*^9}, 
+   3.685473726066235*^9, {3.705428809247418*^9, 3.705428832176352*^9}, {
+   3.705428867266286*^9, 3.7054289641260643`*^9}, {3.705429248928471*^9, 
+   3.705429298363607*^9}, {3.705429328804689*^9, 3.705429448611526*^9}, {
+   3.70542979644664*^9, 3.7054298861702557`*^9}, {3.705429977490341*^9, 
+   3.705430021583851*^9}, {3.7054300692923307`*^9, 3.705430069681868*^9}, {
+   3.705430754237957*^9, 3.7054307551730022`*^9}, {3.7054317069662952`*^9, 
+   3.705431716066502*^9}, {3.70543175040947*^9, 3.705431756058025*^9}, {
+   3.705431913772519*^9, 3.7054319152422047`*^9}, {3.705432914914241*^9, 
+   3.705433007098446*^9}, {3.705433048584498*^9, 3.7054330707107897`*^9}, {
+   3.705433118184095*^9, 3.705433218140572*^9}, {3.705433273066163*^9, 
+   3.705433399810646*^9}, {3.705434010494404*^9, 3.705434056683096*^9}, {
+   3.705444787178977*^9, 3.7054450368681517`*^9}, {3.7054451853406487`*^9, 
+   3.705445624267056*^9}, {3.705445699769287*^9, 3.7054457023764973`*^9}, {
+   3.7054457364170094`*^9, 3.7054459706650352`*^9}, {3.705446154391522*^9, 
+   3.7054463150195503`*^9}, {3.7054463473513823`*^9, 3.705446422449205*^9}, {
+   3.705446520903502*^9, 3.705446588737855*^9}, {3.7054466755785713`*^9, 
+   3.705446920061018*^9}, {3.705446958939891*^9, 3.70544753957758*^9}, 
+   3.7054475745827*^9, {3.705447652145678*^9, 3.705447665441845*^9}, {
+   3.7054479533680077`*^9, 3.705447956148239*^9}, {3.705447996785878*^9, 
+   3.705447998095006*^9}, {3.705448044189569*^9, 3.7054480966288958`*^9}, {
+   3.705448145247135*^9, 3.7054481738613358`*^9}, {3.705448282328981*^9, 
+   3.7054482841043863`*^9}, {3.705448361824127*^9, 3.7054483636525793`*^9}, {
+   3.7054489083828278`*^9, 3.705448947915369*^9}, {3.705449417252323*^9, 
+   3.705449449891864*^9}, {3.705449576494726*^9, 3.705449582848855*^9}, {
+   3.705449666200221*^9, 3.705449674902063*^9}, {3.705449739095022*^9, 
+   3.70544974303345*^9}, {3.7054500103550262`*^9, 3.7054500517820663`*^9}, {
+   3.7054508184287233`*^9, 3.7054508381337433`*^9}, {3.705451314650745*^9, 
+   3.705451316726227*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"b4004e9b-4137-4b10-b65a-af3f188b6db5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Select", " ", "only", " ", "those", " ", "entries", " ", "that", " ", 
+     "have", " ", "complete", " ", "NTD"}], ",", " ", "RRM", ",", " ", 
+    RowBox[{"and", " ", "CTD"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SuperList", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"SuperList", "=", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"SuperList", ",", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"AllNewNTDheader", "[", 
+              RowBox[{"[", "q", "]"}], "]"}], ",", 
+             RowBox[{"AllNewNTDseq", "[", 
+              RowBox[{"[", "q", "]"}], "]"}]}], "}"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"AllNewRRMheader", "[", 
+              RowBox[{"[", "q", "]"}], "]"}], ",", 
+             RowBox[{"AllNewRRMseq", "[", 
+              RowBox[{"[", "q", "]"}], "]"}]}], "}"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"AllNewCTDheader", "[", 
+              RowBox[{"[", "q", "]"}], "]"}], ",", 
+             RowBox[{"AllNewCTDseq", "[", 
+              RowBox[{"[", "q", "]"}], "]"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "}"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"q", ",", "1", ",", 
+       RowBox[{"Length", "[", "AllNewCTDseq", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Length", "[", "SuperList", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FilteredSuperList", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"y1", "=", 
+        RowBox[{"SuperList", "[", 
+         RowBox[{"[", "y", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"NTDcheck", "=", 
+        RowBox[{"StringLength", "[", 
+         RowBox[{"y1", "[", 
+          RowBox[{"[", 
+           RowBox[{"1", ",", "2"}], "]"}], "]"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"RRMcheck", "=", 
+        RowBox[{"StringLength", "[", 
+         RowBox[{"y1", "[", 
+          RowBox[{"[", 
+           RowBox[{"2", ",", "2"}], "]"}], "]"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CTDcheck", "=", 
+        RowBox[{"StringLength", "[", 
+         RowBox[{"y1", "[", 
+          RowBox[{"[", 
+           RowBox[{"3", ",", "2"}], "]"}], "]"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"98", "<", "NTDcheck", "<", "108"}], "&&", 
+          RowBox[{"100", "<", "RRMcheck", "<", "200"}], "&&", 
+          RowBox[{"100", "<", "CTDcheck", "<", "200"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"FilteredSuperList", "=", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"FilteredSuperList", ",", "y1"}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Print", "[", "\"\<Not added!\>\"", "]"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", "1", ",", 
+       RowBox[{"Length", "[", "SuperList", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Length", "[", "FilteredSuperList", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.705450864875022*^9, 3.705450897796627*^9}, {
+  3.705450962738029*^9, 3.705451020289732*^9}, {3.70545108942194*^9, 
+  3.705451138342784*^9}, {3.705451275292241*^9, 3.7054513532961903`*^9}, {
+  3.7054514456433907`*^9, 3.705451584200479*^9}, {3.705451752721938*^9, 
+  3.705451773722603*^9}, {3.705451866671095*^9, 3.705451902046775*^9}, {
+  3.705451977422346*^9, 3.705451982007841*^9}, {3.7054549449029713`*^9, 
+  3.705454961173112*^9}, {3.7054557274811296`*^9, 3.70545576738503*^9}},
+ Background->RGBColor[
+  1, 0.85, 0.85],ExpressionUUID->"c2af29af-667c-47d5-bae8-cfd5d2adb1b9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Export", " ", "all", " ", "unique", " ", "sequences"}], " ", 
+   "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"rausNTD", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "}"}], ",", "\"\<FASTA\>\""}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"rausRRM", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "\[IndentingNewLine]", "}"}], 
+       ",", "\"\<FASTA\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"rausCTD", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Transpose", "[", 
+           RowBox[{
+            RowBox[{"Transpose", "[", "FilteredSuperList", "]"}], "[", 
+            RowBox[{"[", "3", "]"}], "]"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "\[IndentingNewLine]", "}"}], 
+       ",", "\"\<FASTA\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dir", "=", 
+     RowBox[{"DirectoryName", "[", "CTDfile", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "dir", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"newdir", "=", 
+     RowBox[{"CreateDirectory", "[", "\"\<03 Output\>\"", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "newdir", "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<Unique species NTDs.txt\>\"", ",", "rausNTD"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<Unique species RRMs.txt\>\"", ",", "rausRRM"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<Unique species CTDs.txt\>\"", ",", "rausCTD"}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.7054508322515707`*^9, {3.7054520676370497`*^9, 3.705452081627816*^9}, {
+   3.705452164063403*^9, 3.705452224199901*^9}},
+ Background->RGBColor[
+  1, 0.85, 0.85],ExpressionUUID->"f5ba9f6a-e090-49b3-bcd1-75ffae53d779"]
+},
+WindowSize->{1280, 707},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3880, 94, 635, "Input",ExpressionUUID->"56cfd27b-c22a-437b-9942-eb6e9ae6ac62"],
+Cell[4441, 116, 23604, 582, 3071, "Input",ExpressionUUID->"b4004e9b-4137-4b10-b65a-af3f188b6db5"],
+Cell[28048, 700, 4144, 102, 446, "Input",ExpressionUUID->"c2af29af-667c-47d5-bae8-cfd5d2adb1b9"],
+Cell[32195, 804, 3522, 90, 404, "Input",ExpressionUUID->"f5ba9f6a-e090-49b3-bcd1-75ffae53d779"]
+}
+]
+*)
+

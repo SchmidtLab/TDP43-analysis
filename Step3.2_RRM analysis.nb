@@ -1,0 +1,438 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16363,        430]
+NotebookOptionsPosition[     15958,        415]
+NotebookOutlinePosition[     16311,        431]
+CellTagsIndexPosition[     16268,        428]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Provide", " ", "input", " ", "file", " ", "path"}], " ", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Datei", "=", "\"\<Unique species RRMs.fasta\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Sequenzen", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"Datei", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Header", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"Datei", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Length", "[", "Header", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Distances", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a1", "=", 
+        RowBox[{"Sequenzen", "[", 
+         RowBox[{"[", "a", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"temp", "=", 
+         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"b1", "=", 
+             RowBox[{"Sequenzen", "[", 
+              RowBox[{"[", "b", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"dist", "=", 
+             RowBox[{"EditDistance", "[", 
+              RowBox[{"a1", ",", "b1"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"temp", "=", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"temp", ",", "dist"}], "]"}]}]}], "\[IndentingNewLine]",
+            "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"b", ",", "1", ",", 
+            RowBox[{"Length", "[", "Sequenzen", "]"}]}], "}"}]}], "]"}]}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"Distances", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"Distances", ",", "temp"}], "]"}]}]}], "\[IndentingNewLine]",
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1", ",", 
+       RowBox[{"Length", "[", "Sequenzen", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<Analysis done!\>\"", ",", "Bold", ",", "Blue"}], "]"}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Plot", " ", "the", " ", "data"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"MatrixPlot", "[", 
+    RowBox[{"Distances", ",", 
+     RowBox[{"ColorFunction", "\[Rule]", "\"\<LightTemperatureMap\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"MatrixPlot", "[", 
+    RowBox[{"Distances", ",", 
+     RowBox[{"ColorFunction", "\[Rule]", "\"\<TemperatureMap\>\""}], ",", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "False"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"pos", "=", 
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Position", "[", 
+       RowBox[{
+        RowBox[{"Distances", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"Max", "[", 
+         RowBox[{"Distances", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "]"}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"Header", "[", 
+    RowBox[{"[", "pos", "]"}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"Distances", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"Distances", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"ExpGraphik", "=", 
+    RowBox[{"DistributionChart", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"Flatten", "[", "Distances", "]"}], ",", "0"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "6"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Automatic", ",", "40"}], "}"}]}], "}"}]}]}], "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"UbDistances", "=", 
+     RowBox[{"Flatten", "[", "Distances", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Average Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Mean", "[", "UbDistances", "]"}], "]"}], ",", "\"\< +/- \>\"", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"StandardDeviation", "[", "UbDistances", "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Median Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Median", "[", "UbDistances", "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"MedianDeviation", "[", "UbDistances", "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"DirectoryName", "[", "Datei", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<RRM_DistributionGraph.pdf\>\"", ",", "ExpGraphik"}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.68546742846028*^9, 3.685467526783238*^9}, {
+   3.6854676198679857`*^9, 3.6854676642367496`*^9}, {3.6854677057517023`*^9, 
+   3.685467921895183*^9}, 3.685467977631775*^9, {3.6854680617743073`*^9, 
+   3.685468065582087*^9}, {3.685468099431876*^9, 3.685468103598534*^9}, {
+   3.6854681386821003`*^9, 3.685468184376769*^9}, 3.685468534132831*^9, 
+   3.685471755446653*^9, 3.6854747054145813`*^9, {3.6854779754561462`*^9, 
+   3.685477985974373*^9}, 3.685478970045192*^9, 3.685480286356316*^9, {
+   3.68548072302633*^9, 3.6854807332114363`*^9}, {3.6854809924963093`*^9, 
+   3.685481018361219*^9}, {3.6854817230527067`*^9, 3.685481724139894*^9}, 
+   3.685482002048829*^9, {3.6854826795393057`*^9, 3.685482680426673*^9}, 
+   3.685482715117362*^9, 3.6854833708726254`*^9, 3.6854835786814404`*^9, 
+   3.705452586012742*^9, {3.705452627140243*^9, 3.705452694326346*^9}, {
+   3.7054547166376877`*^9, 3.7054547212340813`*^9}, {3.70545511805445*^9, 
+   3.7054551293521442`*^9}, {3.705455198986225*^9, 3.7054552100089703`*^9}, {
+   3.705455915498231*^9, 3.70545595469744*^9}, {3.725311525563212*^9, 
+   3.725311532673675*^9}, 3.7253121193896923`*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"a72bd21b-9dc8-49c4-a30c-2aa1df0e567e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Cluster", " ", "analysis"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"TableForm", "[", 
+    RowBox[{"SortBy", "[", 
+     RowBox[{
+      RowBox[{"Transpose", "[", 
+       RowBox[{"{", 
+        RowBox[{"Header", ",", 
+         RowBox[{
+          RowBox[{"ClusteringComponents", "[", 
+           RowBox[{"Distances", ",", "2"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "]"}], ",", "Last"}], 
+     "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ClusterSeq", "=", 
+     RowBox[{"SortBy", "[", 
+      RowBox[{
+       RowBox[{"Transpose", "[", 
+        RowBox[{"{", 
+         RowBox[{"Sequenzen", ",", 
+          RowBox[{
+           RowBox[{"ClusteringComponents", "[", 
+            RowBox[{"Distances", ",", "2"}], "]"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "]"}], ",", "Last"}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Analyze", " ", "sequences", " ", "in", " ", "cluster", " ", "1"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TempCluster1", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"ClusterSeq", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "1"}], "&"}]}], "]"}]}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Cluster1", "=", 
+     RowBox[{
+      RowBox[{"Transpose", "[", "TempCluster1", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Cl1dist", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a1", "=", 
+        RowBox[{"Cluster1", "[", 
+         RowBox[{"[", "a", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"temp", "=", 
+         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"b1", "=", 
+             RowBox[{"Cluster1", "[", 
+              RowBox[{"[", "b", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"dist", "=", 
+             RowBox[{"EditDistance", "[", 
+              RowBox[{"a1", ",", "b1"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"temp", "=", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"temp", ",", "dist"}], "]"}]}]}], "\[IndentingNewLine]",
+            "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"b", ",", "1", ",", 
+            RowBox[{"Length", "[", "Cluster1", "]"}]}], "}"}]}], "]"}]}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"Cl1dist", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"Cl1dist", ",", "temp"}], "]"}]}]}], "\[IndentingNewLine]", 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1", ",", 
+       RowBox[{"Length", "[", "Cluster1", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"DistributionChart", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"Flatten", "[", "Cl1dist", "]"}], ",", "0"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "6"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "40"}], "}"}]}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Average Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Mean", "[", 
+       RowBox[{"Flatten", "[", "Cl1dist", "]"}], "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"StandardDeviation", "[", 
+       RowBox[{"Flatten", "[", "Cl1dist", "]"}], "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Median Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Median", "[", 
+       RowBox[{"Flatten", "[", "Cl1dist", "]"}], "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"MedianDeviation", "[", 
+       RowBox[{"Flatten", "[", "Cl1dist", "]"}], "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Analyze", " ", "sequences", " ", "in", " ", "cluster", " ", "2"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"TempCluster2", "=", 
+     RowBox[{"Select", "[", 
+      RowBox[{"ClusterSeq", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "\[Equal]", "2"}], "&"}]}], "]"}]}],
+     ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Cluster2", "=", 
+     RowBox[{
+      RowBox[{"Transpose", "[", "TempCluster2", "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Cl2dist", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"a1", "=", 
+        RowBox[{"Cluster2", "[", 
+         RowBox[{"[", "a", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"temp", "=", 
+         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"b1", "=", 
+             RowBox[{"Cluster2", "[", 
+              RowBox[{"[", "b", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"dist", "=", 
+             RowBox[{"EditDistance", "[", 
+              RowBox[{"a1", ",", "b1"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            
+            RowBox[{"temp", "=", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"temp", ",", "dist"}], "]"}]}]}], "\[IndentingNewLine]",
+            "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"b", ",", "1", ",", 
+            RowBox[{"Length", "[", "Cluster2", "]"}]}], "}"}]}], "]"}]}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{"Cl2dist", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"Cl2dist", ",", "temp"}], "]"}]}]}], "\[IndentingNewLine]", 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1", ",", 
+       RowBox[{"Length", "[", "Cluster2", "]"}]}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"DistributionChart", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"Flatten", "[", "Cl2dist", "]"}], ",", "0"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "6"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", "40"}], "}"}]}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Average Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Mean", "[", 
+       RowBox[{"Flatten", "[", "Cl2dist", "]"}], "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"StandardDeviation", "[", 
+       RowBox[{"Flatten", "[", "Cl2dist", "]"}], "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Median Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Median", "[", 
+       RowBox[{"Flatten", "[", "Cl2dist", "]"}], "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"MedianDeviation", "[", 
+       RowBox[{"Flatten", "[", "Cl2dist", "]"}], "]"}], "]"}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.685470607171158*^9, 3.685470656973629*^9}, 
+   3.7055205806885157`*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"f351f017-d1d4-44af-ab38-1866f5baf1a2"]
+},
+WindowSize->{1280, 707},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 6976, 163, 1013, "Input",ExpressionUUID->"a72bd21b-9dc8-49c4-a30c-2aa1df0e567e"],
+Cell[7537, 185, 8417, 228, 992, "Input",ExpressionUUID->"f351f017-d1d4-44af-ab38-1866f5baf1a2"]
+}
+]
+*)
+

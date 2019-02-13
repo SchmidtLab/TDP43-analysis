@@ -1,0 +1,382 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14212,        374]
+NotebookOptionsPosition[     13709,        358]
+NotebookOutlinePosition[     14066,        374]
+CellTagsIndexPosition[     14023,        371]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Sequence", " ", "of", " ", "conserved", " ", "region", " ", "within", " ",
+     "the", " ", "IDR", " ", "of", " ", "vertebrates"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"CR", "=", "\"\<PAMMAAAQAALQSSWGMMGML\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Load", " ", "sequence", " ", "file", " ", "with", " ", "identified", " ",
+      "and", " ", "processed", " ", "CTDs"}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ImportDatei", "=", "\"\<Unique species CTDs_Updated.fasta\>\""}],
+     ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NamensListe", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"ImportDatei", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SeqList", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"ImportDatei", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SequenzDaten", "=", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"{", 
+       RowBox[{"NamensListe", ",", "SeqList"}], "}"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"TrueQ", "[", 
+       RowBox[{
+        RowBox[{"Length", "[", "NamensListe", "]"}], "\[Equal]", 
+        RowBox[{"Length", "[", "SeqList", "]"}], "\[Equal]", 
+        RowBox[{"Length", "[", "SequenzDaten", "]"}]}], "]"}], "\[Equal]", 
+      "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<\\n\>\"", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<Number of imported full-length TDP43 sequences: \>\"", ",", 
+         "Bold", ",", "Blue"}], "]"}], ",", 
+       RowBox[{"Length", "[", "SeqList", "]"}]}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Abort", "[", "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.683399152005362*^9, 3.683399179679656*^9}, 
+   3.7054342489298573`*^9, 3.705520781751603*^9, {3.7253115902535763`*^9, 
+   3.72531159072685*^9}, 3.725312134865444*^9, {3.7524214351433363`*^9, 
+   3.752421455547645*^9}, 3.7590173362500362`*^9},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"d78a2aaf-e878-483d-a2f0-2fd2f0f5418f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"MarkenListe", "=", 
+    RowBox[{"{", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IDR1", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IDR2", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CRs", "=", 
+    RowBox[{"{", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TrueIDR1header", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TrueIDR2header", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CRheader", "=", 
+    RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Monitor", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Name", "=", 
+        RowBox[{"SequenzDaten", "[", 
+         RowBox[{"[", 
+          RowBox[{"n", ",", "1"}], "]"}], "]"}]}], ",", 
+       RowBox[{"CheckName", "=", 
+        RowBox[{"Part", "[", 
+         RowBox[{"NamensListe", ",", "n"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TrueQ", "[", 
+           RowBox[{"Name", "\[Equal]", "CheckName"}], "]"}], "\[Equal]", 
+          "False"}], ",", 
+         RowBox[{"Abort", "[", "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Seq", "=", 
+        RowBox[{"SequenzDaten", "[", 
+         RowBox[{"[", 
+          RowBox[{"n", ",", "2"}], "]"}], "]"}]}], ",", 
+       RowBox[{"CheckSeq", "=", 
+        RowBox[{"Part", "[", 
+         RowBox[{"SeqList", ",", "n"}], "]"}]}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"TrueQ", "[", 
+           RowBox[{"Seq", "\[Equal]", "CheckSeq"}], "]"}], "\[Equal]", 
+          "False"}], ",", 
+         RowBox[{"Abort", "[", "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Generate", " ", "analysis", " ", "ID"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Marke", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"\"\<QC_\>\"", ",", 
+          RowBox[{"ToString", "[", "n", "]"}]}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"MarkenListe", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"MarkenListe", ",", "Marke"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Generate", " ", "export", " ", "headers"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"h1a", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{
+         "Marke", ",", "\"\< | \>\"", ",", "Name", ",", "\"\< | IDR1\>\""}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"TrueIDR1header", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"TrueIDR1header", ",", "h1a"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"h1b", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{
+         "Marke", ",", "\"\< | \>\"", ",", "Name", ",", "\"\< | IDR2\>\""}], 
+         "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"TrueIDR2header", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"TrueIDR2header", ",", "h1b"}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"h2", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{
+         "Marke", ",", "\"\< | \>\"", ",", "Name", ",", 
+          "\"\< | Conserved region\>\""}], "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"CRheader", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"CRheader", ",", "h2"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"Alignment", " ", "to", " ", "CR"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Align", "=", 
+         RowBox[{"SequenceAlignment", "[", 
+          RowBox[{"Seq", ",", "CR", ",", 
+           RowBox[{"Method", "\[Rule]", "\"\<Local\>\""}], ",", 
+           RowBox[{"GapPenalty", "\[Rule]", "10"}], ",", 
+           RowBox[{"SimilarityRules", "\[Rule]", "\"\<BLOSUM62\>\""}]}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{"Extraction", " ", "of", " ", "N"}], "-", 
+          RowBox[{"terminal", " ", "domain"}]}], " ", "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"Nterm", "=", 
+         RowBox[{
+          RowBox[{"First", "[", "Align", "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"IDR1", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"IDR1", ",", "Nterm"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"Extraction", " ", "of", " ", "C"}], "-", 
+         RowBox[{"terminal", " ", "domain"}]}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Cterm", "=", 
+        RowBox[{
+         RowBox[{"Last", "[", "Align", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"IDR2", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"IDR2", ",", "Cterm"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", 
+        RowBox[{"Extraction", " ", "of", " ", "RRM", " ", "domian"}], " ", 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"t1", "=", 
+        RowBox[{
+         RowBox[{"StringSplit", "[", 
+          RowBox[{"Seq", ",", "Nterm"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"t2", "=", 
+        RowBox[{
+         RowBox[{"StringSplit", "[", 
+          RowBox[{"t1", ",", "Cterm"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"CRs", "=", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"CRs", ",", "t2"}], "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Check", " ", "if", " ", "split", " ", "was", " ", "correct"}], " ", 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Checker", "=", 
+         RowBox[{
+          RowBox[{"StringLength", "[", "Seq", "]"}], "-", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"StringLength", "[", "Nterm", "]"}], "+", 
+            RowBox[{"StringLength", "[", "Cterm", "]"}], "+", 
+            RowBox[{"StringLength", "[", "t2", "]"}]}], ")"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Checker", "\[Equal]", "0"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"\"\<Sequence \>\"", ",", 
+             RowBox[{"ToString", "[", "n", "]"}], ",", "\"\< OK!\>\""}], 
+            "]"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"\"\<Error for entry \>\"", ",", 
+             RowBox[{"ToString", "[", "n", "]"}], ",", "\"\<!\>\""}], "]"}], 
+           "]"}]}], "]"}]}]}], "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1", ",", 
+       RowBox[{"Length", "[", "SeqList", "]"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"ProgressIndicator", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"Length", "[", "SeqList", "]"}]}], "}"}]}], "]"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.6833992174476433`*^9, 3.683399553605873*^9}, {
+  3.7524215623542013`*^9, 3.752421648660697*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->
+  "In[1693]:=",ExpressionUUID->"706976f3-893f-4291-8050-dd50f6878fe6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Export", " ", "of", " ", "the", " ", "generated", " ", "sequence", " ", 
+    "lists"}], " ", "*)"}], " ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dir", "=", 
+     RowBox[{"DirectoryName", "[", "ImportDatei", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "dir", "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"newdir", "=", 
+     RowBox[{"CreateDirectory", "[", "\"\<IDR Breakup\>\"", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", "newdir", "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ExportA", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"TrueIDR1header", ",", "IDR1"}], "}"}], ",", 
+       "\"\<FASTA\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ExportB", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"TrueIDR2header", ",", "IDR2"}], "}"}], ",", 
+       "\"\<FASTA\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ExportC", "=", 
+     RowBox[{"ExportString", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"CRheader", ",", "CRs"}], "}"}], ",", "\"\<FASTA\>\""}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<IDR1 Domains.txt\>\"", ",", "ExportA"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<IDR2 Domains.txt\>\"", ",", "ExportB"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<Conserved Regions.txt\>\"", ",", "ExportC"}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"nbName", "=", 
+    RowBox[{"FileBaseName", "[", "ImportDatei", "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"date", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{
+       RowBox[{"DateString", "[", 
+        RowBox[{"{", "\"\<Year\>\"", "}"}], "]"}], ",", "\"\<_\>\"", ",", 
+       RowBox[{"DateString", "[", "\"\<Month\>\"", "]"}], ",", "\"\<_\>\"", 
+       ",", 
+       RowBox[{"DateString", "[", "\"\<Day\>\"", "]"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{
+     RowBox[{"StringJoin", "[", 
+      RowBox[{
+      "date", ",", "\"\< IDR Breakup of: \>\"", ",", "nbName", ",", 
+       "\"\<.nb\>\""}], "]"}], ",", 
+     RowBox[{"SelectedNotebook", "[", "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.683399587438054*^9, 3.683399675440278*^9}, {
+  3.752421467110079*^9, 3.7524214716528263`*^9}, {3.7524216900106707`*^9, 
+  3.752421735600233*^9}},
+ Background->RGBColor[0.87, 0.94, 1],
+ CellLabel->
+  "In[1701]:=",ExpressionUUID->"80e5de4a-8118-4ca2-b9bc-ad7bbb66b5be"]
+},
+WindowSize->{1280, 707},
+WindowMargins->{{471, Automatic}, {Automatic, 193}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2419, 59, 341, "Input",ExpressionUUID->"d78a2aaf-e878-483d-a2f0-2fd2f0f5418f"],
+Cell[2980, 81, 7814, 198, 929, "Input",ExpressionUUID->"706976f3-893f-4291-8050-dd50f6878fe6"],
+Cell[10797, 281, 2908, 75, 425, "Input",ExpressionUUID->"80e5de4a-8118-4ca2-b9bc-ad7bbb66b5be"]
+}
+]
+*)
+
