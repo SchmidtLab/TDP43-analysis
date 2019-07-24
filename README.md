@@ -15,28 +15,18 @@ Source code for:<br><br>
 		Input: Unique species CTDs.fasta<br>
 		Analysis: Step4.nb<br>
 		Output: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br><br>
-	5.) Analysis of Edit distances (Step 5)<br>
-		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
-		Analysis: Step5.nb<br><br>
-	6.) 
-	
-	5.) Spacing of hydrophobic residues (Step 5)<br>
-		Input: IDR1 Domains.fasta, IDR2 Domains.fasta
-		Analysis: Step5.nb<br><br>
-	6.) 
-	
-	
-	
-	
 	5.) Analyzing the IDR and CR databases (Step 5)<br>
 		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
 		Analysis: Step5.nb<br><br>
-	6.) Sliding window analysis of CTD sequences (Step 6)<br>
+	6.) Spacing of hydrophobic residues (Step 5)<br>
+		Input: IDR1 Domains.fasta, IDR2 Domains.fasta
+		Analysis: Step5.nb<br><br>
+	7.) Sliding window analysis of CTD sequences (Step 6)<br>
 		Input: Unique species CTDs.fasta<br>
-		Analysis: Step6.nb<br><br>
-	7.) Analysis of TDP43 splicing assay (Step 7)<br>
-		Input: fcs files<br>
 		Analysis: Step7.nb<br><br>
-	8.) Analysis of TDP43 reporter droplet formation (Step 8)<br>
-		Input: image files<br>
+	8.) Analysis of TDP43 splicing assay (Step 8)<br>
+		Input: fcs files<br>
 		Analysis: Step8.nb<br><br>
+	9.) Analysis of TDP43 reporter droplet formation (Step 9)<br>
+		Input: image files<br>
+		Analysis: Step9.nb<br><br>
