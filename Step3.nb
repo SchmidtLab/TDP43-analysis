@@ -1,0 +1,250 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9739,        242]
+NotebookOptionsPosition[      9427,        228]
+NotebookOutlinePosition[      9784,        244]
+CellTagsIndexPosition[      9741,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Provide", " ", "input", " ", "file", " ", "path"}], " ", "*)"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Datei", "=", "\"\</Unique species CTDs.fasta\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Sequenzen", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"Datei", ",", "\"\<Sequence\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Header", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"Datei", ",", "\"\<Header\>\""}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Length", "[", "Header", "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Distances", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Lengths", "=", 
+     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Monitor", "[", 
+    RowBox[{
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"a1", "=", 
+          RowBox[{"Sequenzen", "[", 
+           RowBox[{"[", "a", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"temp1", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"temp2", "=", 
+           RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Do", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"b1", "=", 
+               RowBox[{"Sequenzen", "[", 
+                RowBox[{"[", "b", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+              
+              RowBox[{"dist", "=", 
+               RowBox[{"EditDistance", "[", 
+                RowBox[{"a1", ",", "b1"}], "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"temp1", "=", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"temp1", ",", "dist"}], "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"length", "=", 
+               RowBox[{"Mean", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StringLength", "[", "a1", "]"}], ",", 
+                  RowBox[{"StringLength", "[", "b1", "]"}]}], "}"}], "]"}]}], 
+              ",", "\[IndentingNewLine]", 
+              RowBox[{"temp2", "=", 
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"temp2", ",", "length"}], "]"}]}]}], 
+             "\[IndentingNewLine]", "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"b", ",", "1", ",", 
+              RowBox[{"Length", "[", "Sequenzen", "]"}]}], "}"}]}], "]"}]}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"Distances", "=", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"Distances", ",", 
+            RowBox[{"N", "[", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"temp1", "/", "temp2"}], ")"}], "*", "100"}], "]"}]}], 
+           "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Lengths", "=", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"Lengths", ",", "temp2"}], "]"}]}], ";"}]}], 
+        "\[IndentingNewLine]", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "1", ",", 
+         RowBox[{"Length", "[", "Sequenzen", "]"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"ProgressIndicator", "[", 
+      RowBox[{"a", ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"Length", "[", "Sequenzen", "]"}]}], "}"}]}], "]"}]}], "]"}],
+    "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<Analysis done!\>\"", ",", "Bold", ",", "Blue"}], "]"}], 
+    "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Plot", " ", "the", " ", "data"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"MatrixPlot", "[", 
+    RowBox[{"Distances", ",", 
+     RowBox[{"ColorFunction", "\[Rule]", "\"\<LightTemperatureMap\>\""}]}], 
+    "]"}], "\[IndentingNewLine]", 
+   RowBox[{"MatrixPlot", "[", 
+    RowBox[{"Distances", ",", 
+     RowBox[{"ColorFunction", "\[Rule]", "\"\<TemperatureMap\>\""}], ",", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "False"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"pos", "=", 
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Position", "[", 
+       RowBox[{
+        RowBox[{"Distances", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"Max", "[", 
+         RowBox[{"Distances", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "]"}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"Header", "[", 
+    RowBox[{"[", "pos", "]"}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"Distances", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Histogram", "[", 
+    RowBox[{"Distances", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"ExpGraphik", "=", 
+    RowBox[{"DistributionChart", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"N", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Flatten", "[", "Distances", "]"}], "/", 
+            RowBox[{"Mean", "[", 
+             RowBox[{"Flatten", "[", "Lengths", "]"}], "]"}]}], ")"}], "*", 
+          "100"}], "]"}], ",", "0"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "6"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Automatic", ",", "42"}], "}"}]}], "}"}]}]}], "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"UbDistances", "=", 
+     RowBox[{"Flatten", "[", "Distances", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Average Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Mean", "[", "UbDistances", "]"}], "]"}], ",", "\"\< +/- \>\"", 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"StandardDeviation", "[", "UbDistances", "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<Median Edit Distance: \>\"", ",", "Bold", ",", "Blue"}], 
+      "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"Median", "[", "UbDistances", "]"}], "]"}], ",", 
+     "\"\< +/- \>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"MedianDeviation", "[", "UbDistances", "]"}], "]"}]}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetDirectory", "[", 
+     RowBox[{"DirectoryName", "[", "Datei", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
+    RowBox[{"\"\<CTD_DistributionGraph.pdf\>\"", ",", "ExpGraphik"}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.68546742846028*^9, 3.685467526783238*^9}, {
+   3.6854676198679857`*^9, 3.6854676642367496`*^9}, {3.6854677057517023`*^9, 
+   3.685467921895183*^9}, 3.685467977631775*^9, {3.6854680617743073`*^9, 
+   3.685468065582087*^9}, {3.685468099431876*^9, 3.685468103598534*^9}, {
+   3.6854681386821003`*^9, 3.685468184376769*^9}, 3.685468534132831*^9, 
+   3.685471755446653*^9, 3.6854747054145813`*^9, {3.6854779754561462`*^9, 
+   3.685477985974373*^9}, 3.685478970045192*^9, 3.685480286356316*^9, {
+   3.68548072302633*^9, 3.6854807332114363`*^9}, {3.6854809924963093`*^9, 
+   3.685481018361219*^9}, {3.6854817230527067`*^9, 3.685481724139894*^9}, 
+   3.685482002048829*^9, {3.6854826795393057`*^9, 3.685482680426673*^9}, 
+   3.685482715117362*^9, 3.6854833708726254`*^9, 3.6854835786814404`*^9, 
+   3.705452586012742*^9, {3.705452627140243*^9, 3.705452694326346*^9}, {
+   3.7054547166376877`*^9, 3.705454796918227*^9}, {3.705455178114293*^9, 
+   3.7054551892245073`*^9}, {3.7054560095180197`*^9, 3.705456010691712*^9}, {
+   3.725311547191077*^9, 3.725311548857719*^9}, {3.7318706054523478`*^9, 
+   3.73187061820924*^9}, {3.731870766080133*^9, 3.73187079035283*^9}, {
+   3.731871147042158*^9, 3.7318711508202972`*^9}, {3.747665066699974*^9, 
+   3.7476650882503347`*^9}, 3.766512743518518*^9, {3.766512789862619*^9, 
+   3.7665127902093*^9}, {3.766512928242132*^9, 3.766512940948161*^9}, {
+   3.772927877703527*^9, 3.772927881885705*^9}},
+ Background->RGBColor[
+  0.87, 0.94, 1],ExpressionUUID->"68e106ad-00bc-48e8-af8e-5994f919e2dd"]
+},
+WindowSize->{1280, 706},
+WindowMargins->{{Automatic, 588}, {Automatic, 146}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 8865, 206, 1118, "Input",ExpressionUUID->"68e106ad-00bc-48e8-af8e-5994f919e2dd"]
+}
+]
+*)
+
