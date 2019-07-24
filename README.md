@@ -20,7 +20,7 @@ Source code for:<br><br>
 		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
 		Analysis: Step5.nb<br><br>
 	6.) Spacing of hydrophobic residues (Step 6)<br>
-		Input: IDR1 Domains.fasta, IDR2 Domains.fasta
+		Input: IDR1 Domains.fasta, IDR2 Domains.fasta<br>
 		Analysis: Step5.nb<br><br>
 	7.) Sliding window analysis of CTD sequences (Step 7)<br>
 		Input: Unique species CTDs.fasta<br>
