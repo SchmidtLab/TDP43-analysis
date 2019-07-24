@@ -28,9 +28,9 @@ Source code for:<br><br>
 	8.) Residual analysis (Step 8)<br>
 		Input: IDR1 domains.fasta, IDR2 domains.fasta<br>
 		Analysis: Step8.nb<br><br>
------ TDP43 splicing reporter analysis -----<br><br>	
+----- TDP43 splicing reporter analysis -----<br>	
 	Input: fcs files<br>
 	Analysis: CSA_Gating.nb, CSA_Plotting<br><br>
------ TDP43 RRM-GFP droplet formation analysis -----<br><br>
+----- TDP43 RRM-GFP droplet formation analysis -----<br>
 	Input: image files<br>
 	Analysis: DropletAnalysis.nb<br><br>
