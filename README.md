@@ -15,6 +15,19 @@ Source code for:<br><br>
 		Input: Unique species CTDs.fasta<br>
 		Analysis: Step4.nb<br>
 		Output: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br><br>
+	5.) Analysis of Edit distances (Step 5)<br>
+		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
+		Analysis: Step5.nb<br><br>
+	6.) 
+	
+	5.) Spacing of hydrophobic residues (Step 5)<br>
+		Input: IDR1 Domains.fasta, IDR2 Domains.fasta
+		Analysis: Step5.nb<br><br>
+	6.) 
+	
+	
+	
+	
 	5.) Analyzing the IDR and CR databases (Step 5)<br>
 		Input: IDR1 Domains.fasta, IDR2 Domains.fasta, Conserved Regions.fasta<br>
 		Analysis: Step5.nb<br><br>
