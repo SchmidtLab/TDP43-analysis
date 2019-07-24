@@ -1,5 +1,6 @@
 # TDP43-analysis
 Source code for:<br><br>
+----- Vertebrate TDP43 sequence analysis -----<br><br>
 	1.) Compiling NTD, RRM and CTD databases from a collection of vertebrate TDP43 homologs (Step 1)<br>
 		Input: Vertebrate TDP43.fasta<br>
 		Analysis: Step1.nb<br>
@@ -27,9 +28,11 @@ Source code for:<br><br>
 	8.) Residual analysis (Step 8)<br>
 		Input: IDR1 domains.fasta, IDR2 domains.fasta<br>
 		Analysis: Step8.nb<br><br>
+----- TDP43 splicing reporter analysis -----<br><br>	
 	9.) Analysis of TDP43 splicing assay<br>
 		Input: fcs files<br>
 		Analysis: CSA_Gating.nb, CSA_Plotting<br><br>
+----- TDP43 RRM-GFP droplet formation analysis -----<br><br>
 	10.) Analysis of TDP43 reporter droplet formation<br>
 		Input: image files<br>
 		Analysis: Droplet_Analysis.nb<br><br>
