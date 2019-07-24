@@ -29,10 +29,8 @@ Source code for:<br><br>
 		Input: IDR1 domains.fasta, IDR2 domains.fasta<br>
 		Analysis: Step8.nb<br><br>
 ----- TDP43 splicing reporter analysis -----<br><br>	
-	9.) Analysis of TDP43 splicing assay<br>
-		Input: fcs files<br>
-		Analysis: CSA_Gating.nb, CSA_Plotting<br><br>
+	Input: fcs files<br>
+	Analysis: CSA_Gating.nb, CSA_Plotting<br><br>
 ----- TDP43 RRM-GFP droplet formation analysis -----<br><br>
-	10.) Analysis of TDP43 reporter droplet formation<br>
-		Input: image files<br>
-		Analysis: Droplet_Analysis.nb<br><br>
+	Input: image files<br>
+	Analysis: DropletAnalysis.nb<br><br>
